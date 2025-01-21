@@ -27,7 +27,9 @@
         <button class="btn btn-outline-secondary">All</button>
         <button class="btn btn-outline-secondary">Subject ▼</button>
         <button class="btn btn-outline-secondary">Distance ▼</button>
-        <button class="btn btn-outline-secondary">Price ▼</button>
+        <button class="btn btn-outline-secondary">Price ▼
+
+        </button>
         <button class="btn btn-outline-secondary">Community ▼</button>
       </div>
     </div>
@@ -56,6 +58,13 @@
         </div>
       </div>
     </div>
+
+     <!-- AboutUus ection -->
+    <section id="about-us" class="text-center mt-5 p-4 bg-light">
+      <h3>Why Choose Your Languages?</h3>
+      <p>Find the best tutors nearby! Learn languages face to face from experienced professionals with a minmium cost.</p>
+      <p>We offer personalized lessons, flexible schedules, and a community of passionate learners.</p>
+    </section>
 
     <!-- page 1-5-->
     <div class="d-flex justify-content-center mt-4">
