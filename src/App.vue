@@ -1,18 +1,23 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <router-link class="navbar-brand" to="/">YourLanguages</router-link>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item"><router-link class="nav-link" to="/login">Login</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/register">Register</router-link></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <router-view />
 </template>
+
 
 <style scoped>
 .logo {
