@@ -10,49 +10,52 @@
           <form @submit.prevent="handleFormSubmit">
             <div class="mb-3">
               <input
-                v-model="values.email"
+                v-model="email"
                 type="email"
                 class="form-control"
                 placeholder="Email"
               />
-              <span v-if="errors.email" class="text-danger">{{ errors.email }}</span>
+              <span v-if="emailError" class="text-danger">{{ emailError }}</span>
             </div>
             <div class="mb-3">
               <input
-                v-model="values.firstName"
+                v-model="firstName"
                 type="text"
                 class="form-control"
                 placeholder="First Name"
               />
-              <span v-if="errors.firstName" class="text-danger">{{ errors.firstName }}</span>
+              <span v-if="firstNameError" class="text-danger">{{ firstNameError }}</span>
             </div>
             <div class="mb-3">
               <input
-                v-model="values.lastName"
+                v-model="lastName"
                 type="text"
                 class="form-control"
                 placeholder="Last Name"
               />
-              <span v-if="errors.lastName" class="text-danger">{{ errors.lastName }}</span>
+              <span v-if="lastNameError" class="text-danger">{{ lastNameError }}</span>
             </div>
             <div class="mb-3">
               <input
-                v-model="values.password"
+                v-model="password"
                 type="password"
                 class="form-control"
                 placeholder="Password"
               />
-              <span v-if="errors.password" class="text-danger">{{ errors.password }}</span>
+              <span v-if="passwordError" class="text-danger">{{ passwordError }}</span>
             </div>
             <div class="mb-3">
               <input
-                v-model="values.confirmPassword"
+                v-model="confirmPassword"
                 type="password"
                 class="form-control"
                 placeholder="Confirm Password"
               />
-              <span v-if="errors.confirmPassword" class="text-danger">
-                {{ errors.confirmPassword }}
+              <span
+                v-if="confirmPasswordError"
+                class="text-danger"
+              >
+                {{ confirmPasswordError }}
               </span>
             </div>
             <p v-if="errorMessage" class="text-danger text-center">{{ errorMessage }}</p>
@@ -71,16 +74,15 @@
     </div>
   </div>
 </template>
+
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'; 
 import { useRouter } from 'vue-router';
 import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
 import axios from 'axios';
 
-
 const router = useRouter();
-
 
 const schema = yup.object({
   email: yup.string().email('Please enter a valid email').required('Email is required'),
@@ -96,15 +98,22 @@ const schema = yup.object({
     .required('Confirm Password is required'),
 });
 
-
-const { handleSubmit, values, errors } = useForm({
+const { handleSubmit } = useForm({
   validationSchema: schema,
+  validateOnMount: false, 
+  validateOnBlur: true,  
+  validateOnInput: true, 
 });
+
+const { value: email, errorMessage: emailError } = useField('email');
+const { value: firstName, errorMessage: firstNameError } = useField('firstName');
+const { value: lastName, errorMessage: lastNameError } = useField('lastName');
+const { value: password, errorMessage: passwordError } = useField('password');
+const { value: confirmPassword, errorMessage: confirmPasswordError } = useField('confirmPassword');
 
 const errorMessage = ref('');
 const successMessage = ref('');
 const loading = ref(false);
-
 
 const handleFormSubmit = handleSubmit(async () => {
   errorMessage.value = '';
@@ -113,8 +122,8 @@ const handleFormSubmit = handleSubmit(async () => {
 
   try {
     const response = await axios.post('https://reqres.in/api/register', {
-      email: values.email,
-      password: values.password,
+      email: email.value,
+      password: password.value,
     });
 
     if (response.data.token) {
