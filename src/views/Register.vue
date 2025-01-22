@@ -84,13 +84,13 @@ const register = async () => {
       email: email.value,
       password: password.value
     });
-
+// Redirect to home page 
     if (response.data.token) {
       successMessage.value = 'Registration successful! Redirecting to home...';
       localStorage.setItem('token', response.data.token);
       setTimeout(() => {
         router.push('/');
-      }, 2000); // Redirect to home page after 2 seconds
+      }, 2000); 
     }
   } catch (error) {
     errorMessage.value = 'Registration failed. Please try again.';

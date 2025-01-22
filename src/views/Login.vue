@@ -14,6 +14,7 @@
             <div class="mb-3">
               <input type="password" class="form-control" placeholder="Password" v-model="password" required>
             </div>
+            <div class="text-danger" v-if="errorMessage">{{ errorMessage }}</div>
             <div class="text-end">
               <a href="#" class="text-primary">Forgot your password?</a>
             </div>
@@ -43,13 +44,32 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 const email = ref('');
 const password = ref('');
+const errorMessage = ref('');
 
-const login = () => {
-  alert(`Logging in with ${email.value}`);
+const login = async () => {
+  errorMessage.value = '';
+
+  try {
+    const response = await axios.post('https://reqres.in/api/login', {
+      email: email.value,
+      password: password.value
+    });
+
+    if (response.data.token) {
+      // Save token to local storage
+      localStorage.setItem('token', response.data.token);
+      
+// Redirect to home page
+      router.push('/');
+    }
+  } catch (error) {
+    errorMessage.value = 'Invalid email or password. Please try again.';
+  }
 };
 
 const navigateToRegister = () => {
