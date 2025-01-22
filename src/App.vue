@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view />
+    <Navbar /> 
+    <router-view /> 
+    <Footer />
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import Navbar from './components/Navbar.vue'; 
+import Footer from './components/Footer.vue'; 
 </script>
 
 <style scoped>

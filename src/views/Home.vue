@@ -59,16 +59,6 @@
         </ul>
       </nav>
     </div>
-
-       <!-- Footer -->
-    <footer class="text-center mt-5 p-3 bg-dark text-white">
-      <p>© 2024 Your Languages. All rights reserved.</p>
-      <nav>
-        <a href="#" class="text-white me-3">Privacy Policy</a>
-        <a href="#" class="text-white me-3">Terms of Service</a>
-        <a href="#" class="text-white">Contact Us</a>
-      </nav>
-    </footer>
   </div>
 
 </template>
