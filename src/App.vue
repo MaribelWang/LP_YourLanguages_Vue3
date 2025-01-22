@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar /> 
-    <router-view /> 
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
     <Footer />
   </div>
 </template>
@@ -14,6 +16,15 @@ import Footer from './components/Footer.vue';
 </script>
 
 <style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;

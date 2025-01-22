@@ -2,11 +2,11 @@
   <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
     <div class="row w-100">
       <div class="col-md-6 d-flex flex-column justify-content-center text-center">
-        <h1 class="fw-bold">Minimum cost to find the best tutor of languages nearby!</h1>
+        <h1 class="fw-bold">Welcome back to where you strive yourself!</h1>
       </div>
       <div class="col-md-6 d-flex flex-column justify-content-center">
         <div class="card p-4 shadow-lg">
-          <h3 class="text-primary text-center fw-bold">Login here</h3>
+          <h3 class="text-primary text-center fw-bold">Login</h3>
           <form @submit.prevent="handleFormSubmit">
             <div class="mb-3">
               <input
