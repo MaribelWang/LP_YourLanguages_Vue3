@@ -111,7 +111,12 @@ The app uses the [Reqres API](https://reqres.in/) for authentication:
 - **Register**: `POST https://reqres.in/api/register`
 - **Login**: `POST https://reqres.in/api/login`
 
----
+## To test register and login, only use this mail and password
+
+{
+"email": "eve.holt@reqres.in",
+"password": "pistol"
+}
 
 ## Features in Detail
 
