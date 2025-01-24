@@ -3,14 +3,13 @@
     <!-- Filters Section -->
     <div class="text-center mt-4">
       <h2>Look for tutors & teachers for your lessons</h2>
-      <div class="d-flex justify-content-center gap-2 mt-3">
-        <!-- All Button -->
-        <button class="btn btn-outline-secondary">All</button>
+      <div class="filters-container mt-4">
+        <button class="btn btn-outline-secondary filter-btn">All</button>
 
         <!-- Subject Dropdown -->
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle"
+            class="btn btn-outline-secondary filter-btn dropdown-toggle"
             type="button"
             id="subjectDropdown"
             data-bs-toggle="dropdown"
@@ -28,7 +27,7 @@
         <!-- Distance Dropdown -->
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle"
+            class="btn btn-outline-secondary filter-btn dropdown-toggle"
             type="button"
             id="distanceDropdown"
             data-bs-toggle="dropdown"
@@ -46,7 +45,7 @@
         <!-- Price Dropdown -->
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle"
+            class="btn btn-outline-secondary filter-btn dropdown-toggle"
             type="button"
             id="priceDropdown"
             data-bs-toggle="dropdown"
@@ -64,33 +63,35 @@
         <!-- Community Dropdown -->
         <div class="dropdown">
           <button
-            class="btn btn-outline-secondary dropdown-toggle"
+            class="btn btn-outline-secondary filter-btn dropdown-toggle"
             type="button"
             id="communityDropdown"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Location
+            Community
           </button>
-          <ul class="dropdown-menu" aria-labelledby="CityDropdown">
-            <li><a class="dropdown-item" href="#">Barcelona</a></li>
-            <li><a class="dropdown-item" href="#">Madrid</a></li>
-            <li><a class="dropdown-item" href="#">Tarragona</a></li>
+          <ul class="dropdown-menu" aria-labelledby="communityDropdown">
+            <li><a class="dropdown-item" href="#">Students</a></li>
+            <li><a class="dropdown-item" href="#">Teachers</a></li>
+            <li><a class="dropdown-item" href="#">Parents</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Tutor Cards -->
+    <!-- Tutor Cards Section -->
     <div class="container mt-4">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <div v-for="(tutor, index) in tutors" :key="index" class="col">
-          <div class="card shadow-sm">
+      <div class="row g-4">
+        <div v-for="(tutor, index) in tutors" :key="index" class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
             <div class="card-header bg-primary text-white d-flex align-items-center">
-              <div
-                class="rounded-circle bg-light me-3"
-                style="width: 50px; height: 50px;"
-              ></div>
+              <!-- Avatar -->
+              <img
+                :src="tutor.avatar"
+                alt="Tutor Avatar"
+                class="rounded-circle me-3 avatar"
+              />
               <div>
                 <h5 class="mb-0">{{ tutor.name }}</h5>
                 <p class="mb-0 small">⭐⭐⭐{{ tutor.rating }} ({{ tutor.reviews }} reviews)</p>
@@ -109,20 +110,7 @@
       </div>
     </div>
 
-    <!-- About Us Section -->
-    <section id="about-us" class="text-center mt-5 p-4 bg-light">
-      <h3>Why Choose Your Languages?</h3>
-      <p>
-        Find the best tutors nearby! Learn languages face to face from
-        experienced professionals with a minimum cost.
-      </p>
-      <p>
-        We offer personalized lessons, flexible schedules, and a community of
-        passionate learners.
-      </p>
-    </section>
-
-    <!-- Pagination -->
+    <!-- Pagination Section -->
     <div class="d-flex justify-content-center mt-4">
       <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -137,8 +125,12 @@
   </div>
 </template>
 
+
 <script setup>
 import { ref } from 'vue';
+import avatar1 from '../assets/avatar1.png';
+import avatar2 from '../assets/avatar2.png';
+import avatar3 from '../assets/avatar3.png';
 
 // Mock data for tutors
 const tutors = ref([
@@ -152,6 +144,7 @@ const tutors = ref([
     price: 19,
     duration: 60,
     description: "I'm a Spanish teacher with 5 years of experience.",
+    avatar: avatar1,
   },
   {
     name: 'Jingwei Wang',
@@ -163,9 +156,10 @@ const tutors = ref([
     price: 28,
     duration: 50,
     description: "I'm a Chinese and English teacher with years of experience.",
+    avatar: avatar2,
   },
   {
-    name: 'Hernan Fernandez',
+    name: 'David muñoz',
     rating: 4.5,
     reviews: 41,
     class: 'Catalan',
@@ -174,8 +168,73 @@ const tutors = ref([
     price: 19,
     duration: 60,
     description: "I'm a Spanish teacher with 5 years of experience.",
+    avatar: avatar3,
   },
 ]);
 
+
 const totalPages = ref(5);
 </script>
+
+<style scoped>
+.filters-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.filter-btn {
+  min-width: 150px;
+  text-align: center;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+</style>
+
